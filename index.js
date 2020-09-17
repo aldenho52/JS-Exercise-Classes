@@ -191,8 +191,8 @@ class Instructor extends Lambdasian {
   demo (subject) {
     return `Today we are learning about ${subject}`
   }
-  grade (student, subject) {
-    return `${student} receives a perfect score on ${subject}`
+  grade ({name}, subject) {
+    return `${name} receives a perfect score on ${subject}`
   }
   adjustGrade (studentgrade) {
     return studentgrade+= Math.floor(Math.random()*10)
@@ -243,10 +243,10 @@ class Student extends Lambdasian {
     return `Loving ${this.favSubjects}!`
   }
   PRAssignment (subject) {
-    return `student.name has submitted a PR for ${subject}`
+    return `${this.name} has submitted a PR for ${subject}`
   }
   sprintChallenge (subject) {
-    return `student.name has begun sprint challenge on ${subject}`
+    return `${this.name} has begun sprint challenge on ${subject}`
   }
   graduate () {
     if (this.grade > 70) {
@@ -256,6 +256,24 @@ class Student extends Lambdasian {
     }
   }
 }
+
+const fred = new Student ({
+  name: 'Fred',
+  age: '21',
+  location: 'Phoenix',
+  previousBackground: 'Medicine',
+  className: 'WEB36',
+  favSubjects: ['Javascript', 'HTML', 'CSS'],
+  grade: 65
+})
+
+// console.log(fred)
+// console.log(fred.speak())
+// console.log(fred.listSubjects())
+// console.log(fred.PRAssignment('html and css'))
+// console.log(fred.sprintChallenge('javascript'))
+// console.log(fred.graduate())
+
 
 /*
   TASK 6
@@ -278,12 +296,29 @@ class ProjectManager extends Instructor {
     this.favInstructor = attrs.favInstructor
   }
   standUp (channel) {
-    return `{this.name} announces to ${channel}, @channel standy times!`
+    return `${this.name} announces to ${channel}, @channel standy times!`
   }
-  debugsCode (studentname, subject) {
-    return `${this.name} debugs {this.studentname}'s code on ${subject}`
+  debugsCode ({name}, subject) {
+    return `${this.name} debugs ${name}'s code on ${subject}`
   }
 }
+
+const manager = new ProjectManager ({
+  name: 'tom',
+  age: 35,
+  location: 'USA',
+  specialty: 'management',
+  favLanguage: 'CS',
+  catchPhrase: 'Debugging the insects!',
+  gradClassName: 'CS2',
+  favInstructor: 'Britt'
+})
+
+console.log(manager)
+
+console.log(manager.grade(fred.name, 'javascript'))
+console.log(manager.debugsCode(fred.name, 'html'))
+
 
 /*
   STRETCH PROBLEM (no tests!)
