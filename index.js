@@ -21,8 +21,6 @@ class Airplane {
   }
 }
 
-// testing pull request
-
 /*
 // 👇 COMPLETE YOUR WORK BELOW 👇
 // 👇 COMPLETE YOUR WORK BELOW 👇
@@ -43,8 +41,34 @@ class Airplane {
 */
 
 class Person {
-
+  constructor(attrs) {
+    this.name = attrs.name
+    this.age = attrs.age
+    this.stomach = []
+  }
+  eat (someFood) {
+    if (this.stomach.length < 10) {
+      return this.stomach.push(someFood)
+    }
+  }
+  poop () {
+    this.stomach = []
+  }
+  toString () {
+    return `${this.name}, ${this.age}`
+  }
 }
+
+const alden = new Person ({
+  name: 'Alden',
+  age: '27'
+})
+
+// console.log(alden)
+// console.log(alden.eat('fried chicken'))
+// console.log(alden.poop())
+// console.log(alden.toString())
+// console.log(alden.stomach)
 
 /*
   TASK 2
