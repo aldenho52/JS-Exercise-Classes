@@ -85,8 +85,36 @@ const alden = new Person ({
 */
 
 class Car {
-
+  constructor(attrs) {
+    this.model = attrs.model
+    this.milesPerGallon = attrs.milesPerGallon
+    this.tank = 0
+    this.odometer = 0
+  }
+  fill (gallons) {
+    this.tank+= gallons
+  }
+  drive (distance) {
+    if (this.tank > (distance/this.milesPerGallon)) {
+      this.odometer += distance
+      this.tank = this.tank - (distance/this.milesPerGallon)    
+    } else if (this.tank <= distance/this.milesPerGallon) {
+        this.odometer = this.odometer + (this.tank*this.milesPerGallon)
+        this.tank = 0
+        return `I ran out of fuel at ${this.odometer} miles!`
+      }
+    }
 }
+
+const bmw = new Car ({
+  model: 'bmw',
+  milesPerGallon: '25',
+})
+
+bmw.fill(4)
+bmw.drive (50)
+console.log(bmw.drive(100))
+console.log(bmw)
 
 /*
   TASK 3
@@ -101,8 +129,24 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-
+  constructor (attrs) {
+    this.name = attrs.name
+    this.age = attrs.age
+    this.location = attrs.location
+  }
+  speak () {
+    return `Hello my name is ${this.name}, I am from ${this.location}`
+  }
 }
+
+const student = new Lambdasian ({
+  name: 'Fred',
+  age: 27,
+  location: 'Hawaii'
+})
+
+// console.log(student)
+// console.log(student.speak())
 
 /*
   TASK 4
@@ -118,9 +162,33 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
-
+class Instructor extends Lambdasian {
+  constructor (attrs) {
+    super (attrs)
+    this.specialty = attrs.specialty
+    this.favLanguage = attrs.favLanguage
+    this.catchPhrase = attrs.catchPhrase
+  }
+  demo (subject) {
+    return `Today we are learning about ${subject}`
+  }
+  grade (studentname, subject) {
+    return `${student.name} receives a perfect score on ${subject}`
+  }
 }
+
+const Britt = new Instructor ({
+  name: 'britt',
+  age: 32,
+  location: 'Canada',
+  specialty: 'HTML and CSS',
+  favLanguage: 'Javascript',
+  catchPhrase: 'Pizza'
+})
+
+// console.log(Britt)
+// console.log(Britt.demo('functions'))
+// console.log(Britt.grade('Alden', 'javascript'))
 
 /*
   TASK 5
@@ -137,8 +205,22 @@ class Instructor {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-
+class Student extends Lambdasian {
+  constructor (attrs) {
+    super (attrs)
+    this.previousBackground = attrs.previousBackground
+    this.className = attrs.className
+    this.favSubjects = attrs.favSubjects
+  }
+  listSubjects () {
+    return `Loving ${this.favSubjects}!`
+  }
+  PRAssignment (subject) {
+    return `student.name has submitted a PR for ${subject}`
+  }
+  sprintChallenge (subject) {
+    return `student.name has begun sprint challenge on ${subject}`
+  }
 }
 
 /*
