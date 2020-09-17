@@ -194,8 +194,8 @@ class Instructor extends Lambdasian {
   grade (student, subject) {
     return `${student.name} receives a perfect score on ${subject}`
   }
-  adjustGrade (studentgrade) {
-    return studentgrade+= Math.floor(Math.random()*10)
+  adjustGrade (student) {
+    return student.grade = student.grade + (Math.floor(Math.random()*10))
   }
 }
 
@@ -207,8 +207,6 @@ const Britt = new Instructor ({
   favLanguage: 'Javascript',
   catchPhrase: 'Pizza'
 })
-
-// Britt.adjustGrade(Alden.grade)
 
 // console.log(Britt)
 // console.log(Britt.demo('functions'))
@@ -250,7 +248,7 @@ class Student extends Lambdasian {
   }
   graduate () {
     if (this.grade > 70) {
-      return 'You can graduate!'
+      return 'You are allowed to graduate!'
     } else {
       return 'We will have to continue grading your assignments.'
     }
@@ -266,6 +264,10 @@ const fred = new Student ({
   favSubjects: ['Javascript', 'HTML', 'CSS'],
   grade: 65
 })
+
+Britt.adjustGrade(fred)
+console.log(fred.grade)
+console.log(fred.graduate())
 
 // console.log(fred)
 // console.log(fred.speak())
