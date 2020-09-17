@@ -191,8 +191,8 @@ class Instructor extends Lambdasian {
   demo (subject) {
     return `Today we are learning about ${subject}`
   }
-  grade ({name}, subject) {
-    return `${name} receives a perfect score on ${subject}`
+  grade (student, subject) {
+    return `${student.name} receives a perfect score on ${subject}`
   }
   adjustGrade (studentgrade) {
     return studentgrade+= Math.floor(Math.random()*10)
@@ -298,8 +298,8 @@ class ProjectManager extends Instructor {
   standUp (channel) {
     return `${this.name} announces to ${channel}, @channel standy times!`
   }
-  debugsCode ({name}, subject) {
-    return `${this.name} debugs ${name}'s code on ${subject}`
+  debugsCode (student, subject) {
+    return `${this.name} debugs ${student.name}'s code on ${subject}`
   }
 }
 
@@ -316,8 +316,8 @@ const manager = new ProjectManager ({
 
 console.log(manager)
 
-console.log(manager.grade(fred.name, 'javascript'))
-console.log(manager.debugsCode(fred.name, 'html'))
+console.log(manager.grade(fred, 'javascript'))
+console.log(manager.debugsCode(fred, 'html'))
 
 
 /*
