@@ -40,10 +40,29 @@ class Airplane {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
+// class Person {
+//   constructor(attrs) {
+//     this.name = attrs.name
+//     this.age = attrs.age
+//     this.stomach = []
+//   }
+//   eat (someFood) {
+//     if (this.stomach.length < 10) {
+//       return this.stomach.push(someFood)
+//     }
+//   }
+//   poop () {
+//     this.stomach = []
+//   }
+//   toString () {
+//     return `${this.name}, ${this.age}`
+//   }
+// }
+
 class Person {
-  constructor(attrs) {
-    this.name = attrs.name
-    this.age = attrs.age
+  constructor(name, age, stomach) {
+    this.name = name
+    this.age = age
     this.stomach = []
   }
   eat (someFood) {
@@ -85,9 +104,9 @@ const alden = new Person ({
 */
 
 class Car {
-  constructor(attrs) {
-    this.model = attrs.model
-    this.milesPerGallon = attrs.milesPerGallon
+  constructor(model, milesPerGallon) {
+    this.model = model
+    this.milesPerGallon = milesPerGallon
     this.tank = 0
     this.odometer = 0
   }
@@ -111,10 +130,10 @@ const bmw = new Car ({
   milesPerGallon: '25',
 })
 
-bmw.fill(4)
-bmw.drive (50)
-console.log(bmw.drive(100))
-console.log(bmw)
+// bmw.fill(4)
+// bmw.drive (50)
+// console.log(bmw.drive(100))
+// console.log(bmw)
 
 /*
   TASK 3
@@ -139,14 +158,14 @@ class Lambdasian {
   }
 }
 
-const student = new Lambdasian ({
-  name: 'Fred',
+const lambdaPerson = new Lambdasian ({
+  name: 'Alden',
   age: 27,
   location: 'Hawaii'
 })
 
-// console.log(student)
-// console.log(student.speak())
+// console.log(lambdaPerson)
+// console.log(lambdaPerson.speak())
 
 /*
   TASK 4
@@ -172,8 +191,8 @@ class Instructor extends Lambdasian {
   demo (subject) {
     return `Today we are learning about ${subject}`
   }
-  grade (studentname, subject) {
-    return `${student.name} receives a perfect score on ${subject}`
+  grade (student, subject) {
+    return `${student} receives a perfect score on ${subject}`
   }
   adjustGrade (studentgrade) {
     return studentgrade+= Math.floor(Math.random()*10)
@@ -189,9 +208,13 @@ const Britt = new Instructor ({
   catchPhrase: 'Pizza'
 })
 
+// Britt.adjustGrade(Alden.grade)
+
 // console.log(Britt)
 // console.log(Britt.demo('functions'))
-// console.log(Britt.grade('Alden', 'javascript'))
+// console.log(Britt.grade('John', 'javascript'))
+
+
 
 /*
   TASK 5
