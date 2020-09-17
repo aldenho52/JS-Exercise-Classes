@@ -175,6 +175,9 @@ class Instructor extends Lambdasian {
   grade (studentname, subject) {
     return `${student.name} receives a perfect score on ${subject}`
   }
+  adjustGrade (studentgrade) {
+    return studentgrade+= Math.floor(Math.random()*10)
+  }
 }
 
 const Britt = new Instructor ({
@@ -211,6 +214,7 @@ class Student extends Lambdasian {
     this.previousBackground = attrs.previousBackground
     this.className = attrs.className
     this.favSubjects = attrs.favSubjects
+    this.grade = attrs.grade
   }
   listSubjects () {
     return `Loving ${this.favSubjects}!`
@@ -220,6 +224,13 @@ class Student extends Lambdasian {
   }
   sprintChallenge (subject) {
     return `student.name has begun sprint challenge on ${subject}`
+  }
+  graduate () {
+    if (this.grade > 70) {
+      return 'You can graduate!'
+    } else {
+      return 'We will have to continue grading your assignments.'
+    }
   }
 }
 
@@ -236,8 +247,19 @@ class Student extends Lambdasian {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
 
+class ProjectManager extends Instructor {
+  constructor (attrs) {
+    super(attrs)
+    this.gradClassName = attrs.gradClassName
+    this.favInstructor = attrs.favInstructor
+  }
+  standUp (channel) {
+    return `{this.name} announces to ${channel}, @channel standy times!`
+  }
+  debugsCode (studentname, subject) {
+    return `${this.name} debugs {this.studentname}'s code on ${subject}`
+  }
 }
 
 /*
@@ -248,6 +270,8 @@ class ProjectManager {
       + This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
+
+
 
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
